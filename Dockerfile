@@ -12,6 +12,10 @@ WORKDIR /
 
 RUN apk --update --no-cache add bash ca-certificates git gnupg curl gettext python3 jq && pip3 install gitpython~=2.1.11 requests~=2.22.0 PyYAML~=5.1.1 awscli
 
+ADD https://github.com/digitalocean/doctl/releases/download/v1.45.1/doctl-1.45.1-linux-amd64.tar.gz /usr/local/bin/doctl.tar.gz
+RUN tar xf doctl.tar.gz
+RUN chmod +x /usr/local/bin/doctl
+
 ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
 

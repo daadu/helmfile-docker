@@ -1,5 +1,6 @@
 FROM alpine:3.11
 
+ARG DOCTL_VERSION=1.45.1
 ARG KUBECTL_VERSION=1.15.12
 ARG HELM_VERSION=3.2.1
 ARG HELM_DIFF_VERSION=3.1.1
@@ -12,7 +13,7 @@ WORKDIR /
 
 RUN apk --update --no-cache add bash ca-certificates git gnupg curl gettext python3 jq && pip3 install gitpython~=2.1.11 requests~=2.22.0 PyYAML~=5.1.1 awscli
 
-ADD https://github.com/digitalocean/doctl/releases/download/v1.45.1/doctl-1.45.1-linux-amd64.tar.gz /usr/local/bin/doctl.tar.gz
+ADD https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz /usr/local/bin/doctl.tar.gz
 RUN tar xf doctl.tar.gz
 RUN chmod +x /usr/local/bin/doctl
 
